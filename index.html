@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>inklehelper</title>
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="page" class="table full-height">
+    <header>
+      <h1>inklehelper</h1>
+    </header>
+    <div class="table-row full-height">
+      <div id="content" class="table-cell middle">
+      </div>
+    </div>
+    <div id="toolbar">
+      <a href="#/stats" class="float-left return" title="return"><i class="fa fa-reply "></i></a>
+      <a href="#/save" class=" float-right save" title="save"><i class="fa fa-save"></i></a>
+      <a href="#/" class=" float-right load" title="load new"><i class="fa fa-file-o"></i></a>
+      <a class=" force-start" title="Rerun sorter"><i class="fa fa-play-circle-o"></i></a>
+      <a class=" force-stop" title="Running. Click to interrupt"><i class="fa fa-spin fa-circle-o-notch"></i></a>
+    </div>
+  </div>
+
+  <footer id="handlebars-templates">
+    <script id="json-form" type="text/x-handlebars-template">
+      <label for="json">Gimme that data</label>
+      <textarea name="json" id="json" cols="30" rows="3">Either the full .json file from Inklewriter OR just the 'data' object.</textarea>
+      <button id="json-parse">Ready</button>
+    </script>
+      
+    <script id="status-menu" type="text/x-handlebars-template">
+      <div class="status-menu">
+        <section class="elements">
+          {{#if imageCount }}
+            <a class="images" href="#/images"><span class="amount">{{imageCount}}</span> images</a>, 
+          {{else}}
+            <span class="no images"><span class="amount">0</span> images</span>,
+          {{/if}}
+          {{#if pageCount }}
+            <a class="pages" href="#/pages"><span class="amount">{{pageCount}}</span> pages</a>, 
+          {{else}}
+            <span class="no pages"><span class="amount">0</span> pages</span>,
+          {{/if}}
+          {{#if flagCount }}
+            <a class="flags" href="#/flags"><span class="amount">{{flagCount}}</span> flags</a> 
+          {{else}}
+            <span class="no flags"><span class="amount">0</span> flags</span>
+          {{/if}}
+        </section>
+        <section class="tools-menu">
+          <div><a href="#/force-graph">force graph</a></div>
+        </section>
+      </div>
+    </script>
+
+    <script id="page-list" type="text/x-handlebars-template">
+      <div class="page-list-wrapper vertical-content-wrapper">
+        <div class="table-row">
+          <div class="page-list-menu table-cell">
+            <a class="sort-pages-az" title="sort alphabetical"><i class="fa fa-sort-alpha-asc"></i></a>
+            <a class="sort-pages-za" title="sort reverse alphabetical"><i class="fa fa-sort-alpha-desc"></i></a>
+            <hr>
+            <a class="trim-pages" title="trim whitespace"><i class="fa fa-arrows-h"></i></a>
+          </div>
+          <div class="page-list-cell table-cell">
+            <ul class="page-list">
+              {{#each pages}}
+                <li data-stitch="{{stitch}}" class="item">
+                  <span class="handle"><i class="fa fa-arrows"></i></span>
+                  <input data-stitch="{{stitch}}" class="page-label" type="text" value="{{pageLabel}}">
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script id="flag-list" type="text/x-handlebars-template">
+      <div class="flag-list-wrapper vertical-content-wrapper">
+        <div class="table-row">
+          <div class="flag-list-menu table-cell">
+            <a class="sort-flags-az" title="sort alphabetical"><i class="fa fa-sort-alpha-asc"></i></a>
+            <a class="sort-flags-za" title="sort reverse alphabetical"><i class="fa fa-sort-alpha-desc"></i></a>
+            <hr>
+            <a class="trim-flags" title="trim whitespace"><i class="fa fa-arrows-h"></i></a>
+          </div>
+          <div class="flag-list-cell table-cell">
+            <ul class="flag-list">
+              {{#each flags}}
+                <li class="item">
+                  <span class="handle"><i class="fa fa-arrows"></i></span>
+                  <input class="flag-label" type="text" value="{{name}}">
+                  <span class="uses">
+                    {{useTotal}} use(s)
+                    <ul class="more-info">
+                      {{#each useGroups}}
+                        <li class="item">{{uses}} use(s)</li>
+                      {{/each}}
+                    </ul>
+                  </span>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script id="image-list" type="text/x-handlebars-template">
+      <ul class="image-list table">
+        {{#each images}}
+          <li class="table-row">
+            <img src="{{image}}" class="table-cell">
+            <span class="url table-cell">{{image}}</span>
+            <span class="uses table-cell">{{uses}} use(s)</span>
+          </li>
+        {{/each}}
+      </ul>
+    </script>
+
+    <script id="save-display" type="text/x-handlebars-template">
+      <div class="save-display">
+        {{#if full}}
+          <select>
+            <option value="data">"Data" only</option>
+            <option value="all">Errythin</option>
+          </select>
+        {{/if}}
+        <textarea id="save-json" cols="30" rows="3">{{data}}</textarea>
+      </div>
+    </script>
+
+    <script id="d3-wrapper" type="text/x-handlebars-template">
+      <div class="d3-wrapper"></div>
+    </script>
+  </footer>
+
+  <footer id="scripts">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
+     <script src="routie.min.js"></script>
+     <script src="d3.min.js"></script>
+
+     <script src="force_graph.js"></script>
+     <script src="pages.js"></script>
+     <script src="images.js"></script>
+     <script src="flags.js"></script>
+     <script src="script.js"></script>
+  </footer>
+</body>
+</html>

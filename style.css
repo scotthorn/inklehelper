@@ -1,0 +1,193 @@
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+/* Page prep and basic classes */
+body,html {height: 100%;}
+#page {height: 100%; margin: auto}
+.table {display: table;}
+.table-row {display: table-row;}
+.table-cell {display: table-cell;}
+.full-height {height: 100%;}
+.middle {vertical-align: middle}
+.float-left {float:left;}
+.float-right {float: right}
+
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 110%;
+	line-height: 1.2;
+}
+textarea {
+	display: block;
+	margin: 11px 0;
+	text-align: center;
+}
+button {
+	font-size: 130%;
+	width: 100%;
+}
+label {
+	display: block;
+	text-align: center;
+}
+#content {
+	padding: 20px 0;
+}
+header {
+	position: fixed;
+	top: 11px;
+	left: 11px;
+}
+header h1 {
+	display: inline-block;
+	font-size: 1.4em;
+	margin-right: 0.3em;
+}
+header h2 {
+	display: inline-block;
+	color: #999
+}
+.vertical-content-wrapper {
+	max-height: 89vh;
+}
+
+/* Toolbar */
+#toolbar {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 19px;
+	height: 0;
+	text-align: center;
+}
+#toolbar a {
+	font-size: 42px;
+	background: rgba(0,0,0,0.3);
+	color: white;
+	padding: 11px;
+	cursor: pointer;
+	border-radius: 11px;
+	position: relative;
+	top: -63px;
+	text-decoration: none;
+	display: none;
+	width: 42px;
+	text-align: center;
+	line-height: 0;
+}
+#toolbar a.active {
+	display: inline-block;
+}
+#toolbar a:hover {
+	background: rgba(0,0,0,0.5);
+}
+#toolbar .float-right {
+	margin-left: 11px;
+}
+
+/* Lists */
+li {
+	background: rgba(0,0,0,0.06);
+	padding: 7px 11px;
+}
+li:nth-child(2n-1) {
+	background: rgba(0,0,0,0.1)
+}
+
+/* Stat(u)s Page */
+.tools-menu {
+	text-align: center;
+	margin-top: 21px
+}
+
+/* Image List */
+.image-list img {
+	max-width: 100px;
+	font-size: 0;
+}
+.image-list .table-cell {
+	padding: 10px;
+	vertical-align: middle;
+}
+
+/* Page List */
+.page-list-menu {
+	vertical-align: middle;
+}
+.page-list-menu a {
+	display: block;
+	font-size: 2em;
+	padding: 11px;
+	background: rgba(0,0,0,0.05);
+	margin: 11px 42px 11px 0;
+	cursor: pointer;
+	vertical-align: top;
+	line-height: 1;
+}
+.page-list-menu hr {
+	margin-right: 42px;
+	opacity: 0.2
+}
+.page-list-menu a:hover {
+	background: rgba(0,0,0,0.1);
+}
+.page-list-cell {
+	vertical-align: top;
+}
+.page-list {
+	height: 89vh;
+	overflow: scroll;
+	line-height: 1;
+}
+.page-list input {
+	width: 300px;
+	padding: 0;
+	border: 0;
+	background: none;
+	font-size: 1em;
+	outline: none;
+}
+
+/* d3 */
+.d3-wrapper {
+	position: relative;
+	top: -20px;
+}
+.d3-wrapper svg {
+	/* height: 100%; */
+	/* width: 100%; */
+}
+.node-part {
+}
+.link {
+  stroke: #000;
+  stroke-opacity: 1;
+  stroke-width: 1.5px;
+}
+.node text {
+  pointer-events: none;
+  font: 11px sans-serif;
+}
+.node-rect {
+	fill: #ccc;
+}
+.node-rect.fork {
+	fill: #979;
+}
+.node-rect.loose {
+	fill: #e64;
+}
+.node-rect.end {
+	fill: #cc3;
+}
+.node-rect.start {
+	fill: #cfc
+}
+marker#suit {
+	stroke: rgb(70, 70, 70); 
+	opacity: 0;
+}
+.stopped marker#suit {
+	opacity: 1;
+}
