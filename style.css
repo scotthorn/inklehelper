@@ -20,7 +20,9 @@ body {
 textarea {
 	display: block;
 	margin: 11px 0;
-	text-align: center;
+	padding: 3px 7px;
+	font-size: 14px;
+	line-height: 1.5;
 }
 button {
 	font-size: 130%;
@@ -29,6 +31,9 @@ button {
 label {
 	display: block;
 	text-align: center;
+	font-size: 1.4em;
+	line-height: 1;
+	cursor: pointer;
 }
 #content {
 	padding: 20px 0;

@@ -21,15 +21,27 @@ var original_json, original_parse, working_parse, data, pageNumHolder,
 // Import JSON from textarea
 function importJson() {
 	textarea = $('#json');
-	if (textarea.val() === '') {
+	var text = textarea.val()
+	if (text === '') {
 		alert('Welp. That textarea is still empty.');
 		return;
 	}
-	if (!IsJsonString(textarea.val())) {
-		alert('I am afraid that your JSON is malformed, madame/sir.');
+	// If it's a url
+	if (text.substring(0,4) == 'http') {
+		$.getJSON(text, function(json){
+			processJson(json);
+		})
+	}
+	else {
+		processJson(text);
+	}
+}
+function processJson(json) {
+	if (!IsJsonString(json)) {
+		alert('Dat JSON is wack, yo.');
 		return;
 	}
-	original_json = textarea.val();
+	original_json = json;
 	original_parse = $.parseJSON(original_json);
 	working_parse = $.parseJSON(original_json);
 
@@ -239,6 +251,13 @@ $(document).ready(function(){
 	body.on('click', '#json-parse', importJson);
 	body.on('focus', 'textarea, input[type="text"]', function(){
 		$(this).select();
+		
+		// Work around Chrome's little problem
+		$(this).mouseup(function() {
+			// Prevent further mouseup intervention
+			$(this).unbind("mouseup");
+			return false;
+		});
 	});
 	body.on('click', '.sort-pages-az', function(){
 		sortPages(true);
