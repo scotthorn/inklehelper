@@ -28,13 +28,16 @@ function importJson() {
 	}
 	// If it's a url
 	if (text.substring(0,4) == 'http') {
-		$.getJSON(text, function(json){
-			processJson(json);
-		})
+		jsonFromURL(text);
 	}
 	else {
 		processJson(text);
 	}
+}
+function jsonFromURL(url) {
+	$.getJSON(url, function(json){
+		processJson(json);
+	})
 }
 function processJson(json) {
 	if (!IsJsonString(json)) {
@@ -282,6 +285,9 @@ $(document).ready(function(){
 	body.on('blur', '.page-list input', function(){
 		savePageLabel(this);
 		rebuildPages();
+	});
+	body.on('click', '.example-json-list div', function(){
+		jsonFromURL($(this).attr('data-url'));
 	});
 	
 });

@@ -55,6 +55,29 @@ header h2 {
 .vertical-content-wrapper {
 	max-height: 89vh;
 }
+h3 {
+	text-align: center;
+	margin-top: 29px;
+	font-size: 23px;
+	color: #999;
+}
+h4 {
+	text-align: center;
+	font-size: 14px;
+	font-style: italic;
+	background: #eee;
+	margin: 0 19px 7px;
+	padding: 2px 0;
+}
+nav.example-json-list {
+	text-align: center;
+}
+nav.example-json-list div {
+	margin-top: 11px;
+	font-size: 15px;
+	color: #666;
+	cursor: pointer;
+}
 
 /* Toolbar */
 #toolbar {
