@@ -124,7 +124,7 @@ function force_graph() {
 		svg.attr('class', '')
 	});
 	force.on("end", function() {
-		$('.force-start').addClass('active');
+		//$('.force-start').addClass('active');
 		$('.force-stop').removeClass('active');
 		svg.attr('class', 'stopped');
 	});

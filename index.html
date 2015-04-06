@@ -94,25 +94,13 @@
     <script id="flag-list" type="text/x-handlebars-template">
       <div class="flag-list-wrapper vertical-content-wrapper">
         <div class="table-row">
-          <div class="flag-list-menu table-cell">
-            <a class="sort-flags-az" title="sort alphabetical"><i class="fa fa-sort-alpha-asc"></i></a>
-            <a class="sort-flags-za" title="sort reverse alphabetical"><i class="fa fa-sort-alpha-desc"></i></a>
-            <hr>
-            <a class="trim-flags" title="trim whitespace"><i class="fa fa-arrows-h"></i></a>
-          </div>
           <div class="flag-list-cell table-cell">
-            <ul class="flag-list">
+            <ul class="flag-list table">
               {{#each flags}}
-                <li class="item">
-                  <span class="handle"><i class="fa fa-arrows"></i></span>
-                  <input class="flag-label" type="text" value="{{name}}">
-                  <span class="uses">
+                <li class="item table-row">
+                  <span class="name table-cell">{{name}}</span>
+                  <span class="uses table-cell">
                     {{useTotal}} use(s)
-                    <ul class="more-info">
-                      {{#each useGroups}}
-                        <li class="item">{{uses}} use(s)</li>
-                      {{/each}}
-                    </ul>
                   </span>
                 </li>
               {{/each}}

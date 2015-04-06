@@ -31,9 +31,7 @@ function importJson() {
 		jsonFromURL(text);
 		return;
 	}
-	else {
-	}
-	if (!IsJsonString(json)) {
+	if (!IsJsonString(text)) {
 		alert('Dat JSON is wack, yo.');
 		return;
 	}
@@ -44,7 +42,6 @@ function importJson() {
 }
 function jsonFromURL(url) {
 	$.getJSON(url, function(json){
-		console.log(json);
 		original_parse = json;
 		working_parse = jQuery.extend({}, json) ;
 		processJson();
@@ -188,7 +185,6 @@ function stats() {
 		pageCount: pages.length, 
 		flagCount: sizeOf(flags)
 	}
-	console.log(flags);
 	content.html(status_menu(context));
 	$('.load, .save').addClass('active');
 	$('.return').removeClass('active');
@@ -239,7 +235,7 @@ $(document).ready(function(){
 					images = [];
 					image_url_map = {};
 					pages = []; 
-					flags = [];
+					flags = {};
 					flags_raw = [];
 					nodes = [],
 					links = [],

@@ -39,6 +39,7 @@ function importFlag(raw_flag) {
 }
 
 function flagsPage() {
+	console.log(flags);
 	collateFlagUses();
 	var context = {
 		flags: flags
@@ -51,8 +52,8 @@ function flagsPage() {
 function collateFlagUses() {
 	$.each(flags, function(name, flag){
 		var tempGroups = {};
-		flag.useTotal = flag.uses.length;
-		flag.useGroups = [];
+		flags[name].useTotal = flag.uses.length;
+		flags[name].useGroups = [];
 
 		$.each(flag.uses, function(i, use) {
 			var opKey = use.operation + use.value;
@@ -65,7 +66,7 @@ function collateFlagUses() {
 		});
 
 		$.each(tempGroups, function(opKey, opUses){
-			flag.useGroups.push({opKey: opKey, uses: opUses});
+			flags[name].useGroups.push({opKey: opKey, uses: opUses});
 		});
 	});
 }

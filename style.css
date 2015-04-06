@@ -17,6 +17,9 @@ body {
 	font-size: 110%;
 	line-height: 1.2;
 }
+a {
+	color: #00d;
+}
 textarea {
 	display: block;
 	margin: 11px 0;
@@ -151,7 +154,8 @@ li:nth-child(2n-1) {
 	margin: 11px 42px 11px 0;
 	cursor: pointer;
 	vertical-align: top;
-	line-height: 1;
+	line-height: 0;
+	color: black;
 }
 .page-list-menu hr {
 	margin-right: 42px;
@@ -218,4 +222,10 @@ marker#suit {
 }
 .stopped marker#suit {
 	opacity: 1;
+}
+
+/* Flag List */
+.flag-list .table-cell {
+	padding: 10px;
+	vertical-align: middle;
 }
