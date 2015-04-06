@@ -29,25 +29,28 @@ function importJson() {
 	// If it's a url
 	if (text.substring(0,4) == 'http') {
 		jsonFromURL(text);
+		return;
 	}
 	else {
-		processJson(text);
 	}
-}
-function jsonFromURL(url) {
-	$.getJSON(url, function(json){
-		processJson(json);
-	})
-}
-function processJson(json) {
 	if (!IsJsonString(json)) {
 		alert('Dat JSON is wack, yo.');
 		return;
 	}
-	original_json = json;
+	original_json = text;
 	original_parse = $.parseJSON(original_json);
 	working_parse = $.parseJSON(original_json);
-
+	processJson();
+}
+function jsonFromURL(url) {
+	$.getJSON(url, function(json){
+		console.log(json);
+		original_parse = json;
+		working_parse = jQuery.extend({}, json) ;
+		processJson();
+	})
+}
+function processJson() {
 	if (typeof working_parse != 'object') {
 		alert('I was expecting an object.');
 		return;
@@ -308,3 +311,4 @@ function sizeOf(obj) {
     }
     return size;
 };
+
